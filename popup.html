@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabnote</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="panel">
+      <header class="header">
+        <h1>Tabnote</h1>
+        <div class="header-actions">
+          <button id="apiKeyToggle" class="export-button icon-button" type="button" title="Set TypeSafe API key" aria-label="Set TypeSafe API key" aria-expanded="false" aria-controls="apiKeyForm">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="7" cy="8" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="m9.5 10.3 6.2 6.2m-2.2-2.2 1.7-1.7m-3.5-.5 1.6-1.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </button>
+          <button id="exportLog" class="export-button" type="button" title="Download tab activity history (.txt)" aria-label="Download tab activity history as TXT">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5v9m0 0 3.2-3.2M10 11.5 6.8 8.3M3.5 12.5v3.2c0 .5.4.8.8.8h11.4c.4 0 .8-.3.8-.8v-3.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>History</span>
+          </button>
+        </div>
+      </header>
+
+      <form id="apiKeyForm" class="api-settings" hidden>
+        <label class="sr-only" for="apiKeyInput">TypeSafe API key</label>
+        <input id="apiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="TypeSafe API key" required>
+        <button type="submit">Save</button>
+        <button id="clearApiKey" type="button" title="Forget API key">Clear</button>
+      </form>
+
+      <form id="taskForm" class="task-form">
+        <label class="sr-only" for="taskInput">New task name</label>
+        <input id="taskInput" name="task" type="text" maxlength="52" autocomplete="off" placeholder="Add a task..." required>
+        <button class="add-button" type="submit" aria-label="Add task" title="Add task">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5v13M3.5 10h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+      </form>
+
+      <div class="actions" role="group" aria-label="Organize tabs">
+        <button id="organizeSite" class="action" type="button" title="Group ungrouped tabs by website and enable automatic sorting">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 10h13M10 3c-2 2-3 4.4-3 7s1 5 3 7m0-14c2 2 3 4.4 3 7s-1 5-3 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span>Group by Site</span>
+        </button>
+        <button id="organizeTask" class="action" type="button" title="Use TypeSafe AI to group ungrouped tabs by task and enable automatic sorting">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 5h2m3 0h8M3.5 10h2m3 0h8M3.5 15h2m3 0h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span>Group by Task</span>
+        </button>
+        <button id="restoreTabs" class="action" type="button" title="Remove Tabnote groups and pause sorting; keep every tab open">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.4 9.5a6.7 6.7 0 1 1 .9 4.5M3.4 5.5v4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Reset Groups</span>
+        </button>
+      </div>
+
+      <section class="tasks" aria-labelledby="tasksHeading">
+        <div class="tasks-heading">
+          <h2 id="tasksHeading">Tasks</h2>
+          <button id="importTaskGroup" class="import-task" type="button" title="Open tabs from a shared Tabnote TXT file" aria-label="Upload a shared tab set from TXT">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 13V3.5m0 0L6.8 6.7M10 3.5l3.2 3.2M3.5 12.5v3.2c0 .5.4.8.8.8h11.4c.4 0 .8-.3.8-.8v-3.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Upload Tab Set</span>
+          </button>
+          <input id="taskGroupFile" class="sr-only" type="file" accept=".txt,text/plain" aria-label="Choose a Tabnote task group TXT file">
+        </div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+    <script src="activity-log.js"></script>
+    <script src="task-transfer.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

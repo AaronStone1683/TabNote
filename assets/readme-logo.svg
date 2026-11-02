@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img" aria-labelledby="title">
+  <title id="title">Tabnote bookmark logo</title>
+  <rect width="160" height="160" rx="32" fill="#303740"/>
+  <path fill="#fff" fill-rule="evenodd" d="M34 130V40a14 14 0 0 1 14-14h64a14 14 0 0 1 14 14v90L80 99Zm16-88v59l30-20 30 20V42Z"/>
+</svg>
