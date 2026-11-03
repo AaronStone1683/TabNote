@@ -1,15 +1,11 @@
-<p align="center">
-  <img src="assets/readme-logo.svg" alt="Tabnote bookmark icon" width="80">
-</p>
-
-<h1 align="center">Tabnote</h1>
+<h1 align="center"><img src="assets/readme-logo.svg" alt="Tabnote icon" width="40" height="40"> Tabnote</h1>
 
 <p align="center"><strong>Give your tabs a place to belong.</strong><br>Group open Chrome tabs by website or task, keep your own edits, and share a task's pages as a tab set.</p>
 
 <p align="center">
-  <a href="manifest.json"><img src="https://img.shields.io/badge/version-0.14.2-374151?style=flat-square" alt="Version 0.14.2"></a>
-  <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome-102%2B-374151?style=flat-square" alt="Chrome 102 or newer"></a>
-  <a href="manifest.json"><img src="https://img.shields.io/badge/Manifest-V3-374151?style=flat-square" alt="Manifest V3"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.1-059669?style=flat-square" alt="Version 0.19.1"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome%20102%2B-2563EB?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Chrome 102 or newer"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/Manifest%20V3-7C3AED?style=flat-square" alt="Manifest V3"></a>
 </p>
 
 <p align="center">
@@ -19,17 +15,13 @@
   <a href="#privacy">Privacy</a>
 </p>
 
-<p align="center">
-  <img src="assets/tabnote-popup.png" alt="Tabnote popup with a task input, History, Group by Site, Group by Task, Reset Groups, and Upload Tab Set" width="500">
-</p>
-
-<p align="center"><em>A compact popup for turning scattered tabs into Chrome tab groups.</em></p>
+The popup puts **Sites** and its automatic grouping switch above **Tasks**. Each site and task row has buttons to sort, export, rename, and remove its group.
 
 ## A simple workflow
 
-**Name a task → Group by Task → move any tab by hand → export the task's tab set.**
+**Name a task → move tabs into its new group by hand or use Sort → export the task's tab set.**
 
-Tabnote groups pages in Chrome's native tab strip. It remembers manual moves and previous task decisions, so sorting again focuses on tabs that still need a decision. Existing groups stay in place unless you choose **Reset Groups**.
+Tabnote groups pages in Chrome's native tab strip. It remembers manual moves and previous task decisions, so sorting again focuses on tabs that still need a decision. Sorting leaves existing groups in place; **Reset** removes all groups.
 
 ## Get started
 
@@ -39,7 +31,7 @@ Tabnote currently runs as a local Chrome extension. No account or build step is 
 2. Open `chrome://extensions` in Chrome 102 or newer and enable **Developer mode**.
 3. Click **Load unpacked** and select this folder, the one containing `manifest.json`.
 4. Pin Tabnote to the toolbar and open the popup.
-5. Click **Group by Site** for immediate local grouping. For task grouping, add a task, set your TypeSafe API key with the key icon, and click **Group by Task**.
+5. Turn on **Auto group** beside Sites for immediate local website grouping and automatic sorting of new tabs. Adding a task creates a Chrome group immediately; move tabs into it manually, or set a TypeSafe API key and click that task's sort icon.
 
 > [!IMPORTANT]
 > A TypeSafe API key is needed only for task decisions that are not already saved. Site grouping, activity history, and tab-set import/export work without one.
@@ -48,14 +40,18 @@ Tabnote currently runs as a local Chrome extension. No account or build step is 
 
 | In the popup | Result |
 | --- | --- |
-| **Add a task...** | Create a named task. Each task also has buttons to sort only for that task, export its tabs, rename it, or remove it. |
-| **Group by Site** | Put unpinned, ungrouped HTTP(S) tabs from the same hostname into native groups. A site needs at least two tabs to form a new group. |
-| **Group by Task** | Compare ungrouped tab titles with your tasks using TypeSafe System One, then group confident matches. |
-| **Reset Groups** | Remove groups created by Tabnote and pause sorting, while keeping the tabs open. |
+| **Tasks · Add a task...** | Create a named task and an immediate Chrome group with a temporary blank tab. Move pages in by hand or use Sort; the temporary tab closes when the first real page enters. |
+| **Tab Set** | Upload a shared task or website TXT file to open its pages in a group. The upload button sits beside the task input. |
+| **Sites · Auto group** | Off by default. Turning it on groups eligible tabs across open windows, then groups new tabs by website. A site needs at least two tabs to form a new group. New groups get varied Chrome colors. |
+| **Site row buttons** | Group remaining tabs for that site, export its open tabs as a TXT, rename its group, or remove its automatically placed tabs. |
+| **Task row sort icon** | Compare ungrouped tab titles with that task using TypeSafe System One, then group confident matches. |
+| **Task row remove icon** | Delete the task and ungroup only its tabs. Web pages stay open; an unused blank placeholder closes. |
+| **Reset** | Remove all Chrome tab groups, including groups that existed before Tabnote was installed, and pause automatic site sorting. Web tabs stay open; temporary task placeholders close. |
 | **History** | Download a TXT activity log of tabs added and closed, with timestamps and tab details. |
-| **Upload Tab Set** | Open a shared Tabnote TXT file as tabs and a task group in the current Chrome window. |
 
-After you select a grouping mode, Tabnote also sorts eligible new or updated tabs. It leaves tabs in existing groups alone. Task decisions are saved by title and task; a repeat decision uses the saved result instead of calling the API again. The match threshold is 0.50, with a 0.05 lead over the next task. Uncertain pages stay ungrouped. Moving a tab into a task group by hand records your preference for future sorting.
+After you turn on website grouping, Tabnote also sorts eligible new or updated tabs by site. If an automatically grouped tab navigates to a different website, it leaves the old site group and can join a group for the new website. Tabs you placed in a group by hand stay there. Task sorting runs when you click a task's sort icon; manual task grouping needs no API key. It leaves tabs in existing groups alone. Task decisions are saved by title and task; a repeat decision uses the saved result instead of calling the API again. The match threshold is 0.50. Uncertain pages stay ungrouped. Moving a tab into a task group by hand records your preference for future sorting.
+
+The popup lists open website groups under **Sites**, showing each site's favicon and the second-to-last part of its hostname. New Chrome website groups use the same short name. Task rows use the first web tab's favicon when available. Renaming or recoloring a Chrome group keeps it connected to Tabnote. Native Chrome tab group labels cannot display image icons.
 
 ## Share a tab set
 
@@ -69,16 +65,18 @@ Tabs:
 {"title":"Related work","url":"https://example.org/paper"}
 ```
 
-Send that file to someone using Tabnote. They can click **Upload Tab Set** to open its pages and create or reuse the named task group. The file is read locally; importing does not require an API key. Upload accepts up to 500 HTTP(S) pages.
+Send that file to someone using Tabnote. They can click **Tab Set** beside the task input to open its pages and create or reuse the named group. The file is read locally; importing does not require an API key. Upload accepts up to 500 HTTP(S) pages.
+
+Website groups can also be exported from their row. A website TXT stores the hostname, group label, and tabs; importing it creates or reuses a website group. Removing a site group keeps manually placed tabs in their group. Deleting a task ungroups all of its tabs while leaving the web pages open. **Reset** removes every Chrome tab group, including groups that existed before Tabnote and those containing manually placed tabs.
 
 > [!NOTE]
-> Check a TXT before sharing it: titles and full URLs may contain private information. The TXT from **History** is a different format and cannot be uploaded as a tab set.
+> Check a TXT before sharing it: titles and full URLs may contain private information. The TXT from **History** uses a different format and cannot be uploaded as a tab set.
 
 ## Privacy
 
 | Data | Storage or destination |
 | --- | --- |
-| Tasks, sorting mode, and settings | Chrome local storage on your device |
+| Tasks, site sorting setting, and group identities | Chrome local storage on your device |
 | Saved task decisions, manual placements, and tab activity | IndexedDB on your device |
 | TypeSafe API key | Chrome session storage; cleared at the end of the browser session |
 | New task classification decisions | Page **title** and task **names** sent to TypeSafe System One |
@@ -91,6 +89,8 @@ Tabnote does not send page URLs or page content to TypeSafe. Site grouping and a
 For task sorting details, open `chrome://extensions`, find Tabnote, and inspect its **Service worker**. Messages beginning with `[Tabnote]` show API requests, saved decisions, scores, and errors. Pinned tabs, tabs already in groups, internal browser pages, and pages still loading are not classified.
 
 After editing extension files locally, click **Reload** on Tabnote's card in `chrome://extensions`.
+
+Run `node tests/grouping.cjs` and `node tests/tab-transfer.cjs` for the local behavior checks.
 
 ## Project status
 

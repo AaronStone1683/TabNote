@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Tabnote — Smart Tab Organizer",
-  "version": "0.14.2",
-  "description": "Group tabs by website or task, share tab sets, and reset Tabnote groups in one click.",
+  "version": "0.19.1",
+  "description": "Group tabs by website or task, share tab sets, and reset all tab groups in one click.",
   "minimum_chrome_version": "102",
   "permissions": ["tabs", "tabGroups", "storage"],
   "host_permissions": ["https://api.typesafe.ai/*"],
@@ -13,7 +13,10 @@
     "default_title": "Tabnote",
     "default_icon": {
       "16": "icons/icon16.png",
-      "32": "icons/icon32.png"
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "64": "icons/icon64.png",
+      "128": "icons/icon128.png"
     },
     "default_popup": "popup.html"
   },
@@ -21,6 +24,9 @@
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "64": "icons/icon64.png",
+    "128": "icons/icon128.png",
+    "256": "icons/icon256.png",
+    "512": "icons/icon512.png"
   }
 }

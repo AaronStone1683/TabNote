@@ -18,6 +18,10 @@
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5v9m0 0 3.2-3.2M10 11.5 6.8 8.3M3.5 12.5v3.2c0 .5.4.8.8.8h11.4c.4 0 .8-.3.8-.8v-3.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>History</span>
           </button>
+          <button id="restoreTabs" class="export-button" type="button" title="Remove all Chrome tab groups and pause sorting; keep web tabs open" aria-label="Reset all tab groups">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.4 9.5a6.7 6.7 0 1 1 .9 4.5M3.4 5.5v4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Reset</span>
+          </button>
         </div>
       </header>
 
@@ -28,37 +32,33 @@
         <button id="clearApiKey" type="button" title="Forget API key">Clear</button>
       </form>
 
-      <form id="taskForm" class="task-form">
-        <label class="sr-only" for="taskInput">New task name</label>
-        <input id="taskInput" name="task" type="text" maxlength="52" autocomplete="off" placeholder="Add a task..." required>
-        <button class="add-button" type="submit" aria-label="Add task" title="Add task">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5v13M3.5 10h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-        </button>
-      </form>
-
-      <div class="actions" role="group" aria-label="Organize tabs">
-        <button id="organizeSite" class="action" type="button" title="Group ungrouped tabs by website and enable automatic sorting">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 10h13M10 3c-2 2-3 4.4-3 7s1 5 3 7m0-14c2 2 3 4.4 3 7s-1 5-3 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <span>Group by Site</span>
-        </button>
-        <button id="organizeTask" class="action" type="button" title="Use TypeSafe AI to group ungrouped tabs by task and enable automatic sorting">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 5h2m3 0h8M3.5 10h2m3 0h8M3.5 15h2m3 0h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <span>Group by Task</span>
-        </button>
-        <button id="restoreTabs" class="action" type="button" title="Remove Tabnote groups and pause sorting; keep every tab open">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.4 9.5a6.7 6.7 0 1 1 .9 4.5M3.4 5.5v4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>Reset Groups</span>
-        </button>
-      </div>
+      <section id="sitesSection" class="sites" aria-labelledby="sitesHeading">
+        <div class="sites-heading">
+          <h2 id="sitesHeading">Sites</h2>
+          <label class="site-switch" title="Automatically group new tabs by website">
+            <span>Auto group</span>
+            <input id="autoSite" type="checkbox" role="switch" aria-label="Automatically group tabs by website">
+            <span class="switch-track" aria-hidden="true"></span>
+          </label>
+        </div>
+        <div id="siteList" class="site-list" aria-live="polite"></div>
+      </section>
 
       <section class="tasks" aria-labelledby="tasksHeading">
         <div class="tasks-heading">
           <h2 id="tasksHeading">Tasks</h2>
-          <button id="importTaskGroup" class="import-task" type="button" title="Open tabs from a shared Tabnote TXT file" aria-label="Upload a shared tab set from TXT">
+          <button id="importTaskGroup" class="import-task" type="button" title="Upload a shared tab set from TXT" aria-label="Upload a shared tab set from TXT">
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 13V3.5m0 0L6.8 6.7M10 3.5l3.2 3.2M3.5 12.5v3.2c0 .5.4.8.8.8h11.4c.4 0 .8-.3.8-.8v-3.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Upload Tab Set</span>
+            <span>Tab Set</span>
           </button>
-          <input id="taskGroupFile" class="sr-only" type="file" accept=".txt,text/plain" aria-label="Choose a Tabnote task group TXT file">
+          <form id="taskForm" class="task-form">
+            <label class="sr-only" for="taskInput">New task name</label>
+            <input id="taskInput" name="task" type="text" maxlength="52" autocomplete="off" placeholder="Add a task..." required>
+            <button class="add-button" type="submit" aria-label="Add task" title="Add task">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5v13M3.5 10h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </button>
+          </form>
+          <input id="taskGroupFile" class="sr-only" type="file" accept=".txt,text/plain" aria-label="Choose a Tabnote tab set TXT file">
         </div>
         <div id="taskList" class="task-list" aria-live="polite"></div>
       </section>
