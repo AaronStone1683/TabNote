@@ -1,4 +1,4 @@
-<h1 align="center"><img src="assets/readme-logo.svg" alt="Tabnote icon" width="40" height="40"> Tabnote</h1>
+<h1 align="center"><img src="assets/readme-logo.svg" alt="Tabnote icon" width="26" height="26"> Tabnote</h1>
 
 <p align="center"><strong>Give your tabs a place to belong.</strong><br>Group open Chrome tabs by website or task, keep your own edits, and share a task's pages as a tab set.</p>
 
