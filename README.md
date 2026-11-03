@@ -9,6 +9,15 @@
 </p>
 
 <p align="center">
+  <a href="README.md"><strong>English</strong></a> ·
+  <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.1/tabnote-v0.19.1.zip"><strong>⬇ Download Tabnote v0.19.1 (.zip)</strong></a>
+</p>
+
+<p align="center">
   <a href="#get-started">Get started</a> ·
   <a href="#what-you-can-do">What you can do</a> ·
   <a href="#share-a-tab-set">Share a tab set</a> ·
@@ -27,9 +36,9 @@ Tabnote groups pages in Chrome's native tab strip. It remembers manual moves and
 
 Tabnote currently runs as a local Chrome extension. No account or build step is required.
 
-1. Download or clone this repository.
+1. [Download the extension ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.1/tabnote-v0.19.1.zip) and extract it, or clone this repository.
 2. Open `chrome://extensions` in Chrome 102 or newer and enable **Developer mode**.
-3. Click **Load unpacked** and select this folder, the one containing `manifest.json`.
+3. Click **Load unpacked** and select the extracted folder containing `manifest.json`.
 4. Pin Tabnote to the toolbar and open the popup.
 5. Turn on **Auto group** beside Sites for immediate local website grouping and automatic sorting of new tabs. Adding a task creates a Chrome group immediately; move tabs into it manually, or set a TypeSafe API key and click that task's sort icon.
 
@@ -90,7 +99,7 @@ For task sorting details, open `chrome://extensions`, find Tabnote, and inspect 
 
 After editing extension files locally, click **Reload** on Tabnote's card in `chrome://extensions`.
 
-Run `node tests/grouping.cjs` and `node tests/tab-transfer.cjs` for the local behavior checks.
+If you cloned the repository, run `node tests/grouping.cjs` and `node tests/tab-transfer.cjs` for the local behavior checks.
 
 ## Project status
 
