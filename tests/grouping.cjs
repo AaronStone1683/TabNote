@@ -319,7 +319,7 @@ function message(payload) {
   const siteId = tabs[0].groupId;
   assert.equal(tabs[1].groupId, siteId, "turning on the switch groups existing website tabs first");
   assert.equal(groups.find((group) => group.id === siteId).title, "switch",
-    "new website groups use the second-to-last hostname segment");
+    "new website groups use the first meaningful hostname segment");
   assert.equal((await message({ type: "exportSiteGroup", groupId: siteId })).summary.tabs.length, 2);
   assert.equal((await message({ type: "renameSiteGroup", groupId: siteId, name: "My website" })).ok, true);
   await chrome.tabGroups.update(siteId, { color: "pink" });
@@ -352,6 +352,23 @@ function message(payload) {
   assert.equal((await message({ type: "popupGroups" })).summary.sites.some((row) => row.id === importedGroupId), false);
   assert.equal((await message({ type: "restoreTabs" })).ok, true);
   assert.equal(importedTab.groupId, -1, "Reset Groups still removes detached manual groups");
+  tabs.splice(0, tabs.length,
+    { id: 50, windowId: 7, title: "Docs 1", url: "https://docs.example.test/one", status: "complete", groupId: -1 },
+    { id: 51, windowId: 7, title: "Docs 2", url: "https://docs.example.test/two", status: "complete", groupId: -1 },
+    { id: 52, windowId: 7, title: "Main 1", url: "https://www.example.test/one", status: "complete", groupId: -1 },
+    { id: 53, windowId: 7, title: "Main 2", url: "https://www.example.test/two", status: "complete", groupId: -1 });
+  groups.splice(0, groups.length);
+  assert.equal((await message({ type: "setAutoSite", enabled: true })).ok, true);
+  const docsGroupId = tabs[0].groupId;
+  assert.equal(groups.find((group) => group.id === docsGroupId).title, "docs");
+  assert.equal(groups.find((group) => group.id === tabs[2].groupId).title, "example",
+    "www is skipped so the group is not named www");
+  await chrome.tabGroups.update(docsGroupId, { title: "example" });
+  settings.ownedGroupsV1.find((record) => record.id === docsGroupId).title = "example";
+  vm.runInNewContext(fs.readFileSync(backgroundPath, "utf8"), { ...context });
+  assert.equal((await message({ type: "popupGroups" })).summary.sites.find((row) => row.id === docsGroupId).label,
+    "docs", "old generated labels migrate to the first hostname segment");
+  assert.equal((await message({ type: "restoreTabs" })).ok, true);
   tabs.splice(0, tabs.length,
     { id: 60, windowId: 7, title: "Google result", url: "https://google.test/search", status: "complete", groupId: -1 },
     { id: 61, windowId: 7, title: "Google page", url: "https://google.test/other", status: "complete", groupId: -1 });

@@ -241,6 +241,13 @@ function queueSiteNavigation(tabId) {
 }
 
 function siteLabel(hostname) {
+  if (/^(?:\d{1,3}\.){3}\d{1,3}$/.test(hostname)) return hostname;
+  const parts = hostname.split(".");
+  const first = /^www\d*$/i.test(parts[0]) && parts.length > 2 ? 1 : 0;
+  return parts[first] || hostname;
+}
+
+function oldSiteLabel(hostname) {
   const parts = hostname.split(".");
   return parts.length > 1 ? parts.at(-2) : hostname;
 }
@@ -295,9 +302,10 @@ async function loadOwnedGroups() {
           tab.url && record.urlHashes.includes(urlFingerprint(tab.url))));
     if (!match) continue;
     if (record.kind === "site" && (match.title === record.key ||
-        match.title?.startsWith(SITE_PREFIX) || match.title?.startsWith(LEGACY_SITE_PREFIX))) {
+        match.title?.startsWith(SITE_PREFIX) || match.title?.startsWith(LEGACY_SITE_PREFIX) ||
+        (match.title === oldSiteLabel(record.key) && match.title === record.title))) {
       const title = siteLabel(record.key);
-      await chrome.tabGroups.update(match.id, { title });
+      if (match.title !== title) await chrome.tabGroups.update(match.id, { title });
       match.title = title;
     }
     const groupMembers = members.get(match.id) || [];
@@ -476,6 +484,10 @@ async function syncOwnedGroup(id) {
   try {
     group = await chrome.tabGroups.get(id);
   } catch {
+    await forgetGroup(id);
+    return;
+  }
+  if (!group) {
     await forgetGroup(id);
     return;
   }

@@ -270,8 +270,10 @@ function renderTasks() {
 
 function displaySiteName(group) {
   if (group.label && group.label !== group.site) return group.label;
+  if (/^(?:\d{1,3}\.){3}\d{1,3}$/.test(group.site)) return group.site;
   const parts = group.site.split(".");
-  return parts.length >= 2 ? parts[parts.length - 2] : group.site;
+  const first = /^www\d*$/i.test(parts[0]) && parts.length > 2 ? 1 : 0;
+  return parts[first] || group.site;
 }
 
 function siteButton(icon, label, handler) {

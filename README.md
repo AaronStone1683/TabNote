@@ -3,7 +3,7 @@
 <p align="center"><strong>Give your tabs a place to belong.</strong><br>Group open Chrome tabs by website or task, keep your own edits, and share a task's pages as a tab set.</p>
 
 <p align="center">
-  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.6-059669?style=flat-square" alt="Version 0.19.6"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.7-059669?style=flat-square" alt="Version 0.19.7"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome%20109%2B-2563EB?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Chrome 109 or newer"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Manifest%20V3-7C3AED?style=flat-square" alt="Manifest V3"></a>
 </p>
@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.6/tabnote-v0.19.6.zip"><strong>⬇ Download Tabnote v0.19.6 (.zip)</strong></a>
+  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.7/tabnote-v0.19.7.zip"><strong>⬇ Download Tabnote v0.19.7 (.zip)</strong></a>
 </p>
 
 <p align="center">
@@ -37,7 +37,7 @@ Tabnote groups pages in Chrome's native tab strip. It remembers manual moves and
 
 Tabnote currently runs as a local Chrome extension. No account or build step is required.
 
-1. [Download the extension ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.6/tabnote-v0.19.6.zip) and extract it, or clone this repository.
+1. [Download the extension ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.7/tabnote-v0.19.7.zip) and extract it, or clone this repository.
 2. Open `chrome://extensions` in Chrome 109 or newer and enable **Developer mode**.
 3. Click **Load unpacked** and select the extracted folder containing `manifest.json`.
 4. Pin Tabnote to the toolbar and open the popup.
@@ -61,7 +61,7 @@ Tabnote currently runs as a local Chrome extension. No account or build step is 
 
 After you turn on website grouping, Tabnote also sorts eligible new or updated tabs by site. If an automatically grouped tab navigates to a different website, it leaves the old site group and can join a group for the new website. Tabs you placed in a group by hand stay there. Task sorting runs when you click a task's sort icon; manual task grouping needs no API key. It leaves tabs in existing groups alone. Task decisions are saved by title and task; a repeat decision uses the saved result instead of calling the API again. The match threshold is 0.50. Uncertain pages stay ungrouped. Moving a tab into a task group by hand records your preference for future sorting.
 
-The popup lists open website groups under **Sites**, showing each site's favicon and the second-to-last part of its hostname. New Chrome website groups use the same short name. Task rows use the first web tab's favicon when available. Renaming or recoloring a Chrome group keeps it connected to Tabnote. Native Chrome tab group labels cannot display image icons.
+The popup lists open website groups under **Sites**, showing each site's favicon and the first part of its hostname (`docs.example.com` becomes `docs`; `www.example.com` becomes `example`). New Chrome website groups use the same short name. Existing automatically named groups adopt the new label, while custom names stay unchanged. Task rows use the first web tab's favicon when available. Renaming or recoloring a Chrome group keeps it connected to Tabnote. Native Chrome tab group labels cannot display image icons.
 
 ## Share a tab set
 

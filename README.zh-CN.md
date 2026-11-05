@@ -3,7 +3,7 @@
 <p align="center"><strong>让每个标签页都有归属。</strong><br>按网站或任务整理 Chrome 标签页，保留你的手动调整，并将任务相关网页分享为标签页集合。</p>
 
 <p align="center">
-  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.6-059669?style=flat-square" alt="版本 0.19.6"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.7-059669?style=flat-square" alt="版本 0.19.7"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome%20109%2B-2563EB?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Chrome 109 或更新版本"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Manifest%20V3-7C3AED?style=flat-square" alt="Manifest V3"></a>
 </p>
@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.6/tabnote-v0.19.6.zip"><strong>⬇ 下载 Tabnote v0.19.6（.zip）</strong></a>
+  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.7/tabnote-v0.19.7.zip"><strong>⬇ 下载 Tabnote v0.19.7（.zip）</strong></a>
 </p>
 
 <p align="center">
@@ -37,7 +37,7 @@ Tabnote 使用 Chrome 原生标签组。它会记住手动移动和已有的任�
 
 Tabnote 目前是一款本地安装的 Chrome 扩展，无需账号，也无需构建。
 
-1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.6/tabnote-v0.19.6.zip) 并解压，或克隆本仓库。
+1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.7/tabnote-v0.19.7.zip) 并解压，或克隆本仓库。
 2. 在 Chrome 109 或更新版本中打开 `chrome://extensions`，开启**开发者模式**。
 3. 点击**加载已解压的扩展程序**，选择包含 `manifest.json` 的解压后文件夹。
 4. 将 Tabnote 固定到工具栏，并打开弹窗。
@@ -63,7 +63,7 @@ Tabnote 目前是一款本地安装的 Chrome 扩展，无需账号，也无需�
 
 任务判断按网页标题和任务保存；再次遇到相同判断时会使用历史结果，而不重复调用 API。匹配阈值为 **0.50**，不确定的网页留在组外。手动将网页移入任务组也会记录你的选择，供之后整理时使用。
 
-弹窗的 **Sites** 列表展示网站图标，并用域名倒数第二段作为短名称；Chrome 中新建的网站组也使用这个名称。任务行会优先使用组内第一个网页的网站图标。你在 Chrome 中手动修改分组名称或颜色后，Tabnote 仍可识别该组。Chrome 原生标签组的标题不支持图片图标。
+弹窗的 **Sites** 列表展示网站图标，并用域名首段作为短名称：`docs.example.com` 显示为 `docs`，`www.example.com` 则跳过 `www`、显示为 `example`。Chrome 中新建的网站组也使用这个名称；已有组的旧自动名称会更新，自定义名称保持不变。任务行会优先使用组内第一个网页的网站图标。你在 Chrome 中手动修改分组名称或颜色后，Tabnote 仍可识别该组。Chrome 原生标签组的标题不支持图片图标。
 
 ## 分享标签页集合
 
