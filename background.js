@@ -3,6 +3,37 @@ importScripts("decision-store.js");
 importScripts("typesafe.js");
 importScripts("task-transfer.js");
 
+const ICON_SIZES = [16, 32, 48, 64, 128];
+let iconThemeSetup;
+
+async function setToolbarIcon(darkBackground) {
+  const path = Object.fromEntries(ICON_SIZES.map((size) => [size,
+    `icons/icon${darkBackground ? "" : "-dark"}${size}.png`]));
+  await chrome.action.setIcon({ path });
+}
+
+async function ensureIconTheme() {
+  if (iconThemeSetup) return iconThemeSetup;
+  iconThemeSetup = (async () => {
+    const url = chrome.runtime.getURL("theme.html");
+    const exists = chrome.runtime.getContexts
+      ? (await chrome.runtime.getContexts({
+        contextTypes: ["OFFSCREEN_DOCUMENT"], documentUrls: [url]
+      })).length > 0
+      : (await clients.matchAll({ includeUncontrolled: true })).some((client) => client.url === url);
+    if (!exists) {
+      await chrome.offscreen.createDocument({
+        url: "theme.html",
+        reasons: ["MATCH_MEDIA"],
+        justification: "Keep the toolbar icon legible when the color scheme changes."
+      });
+    }
+    const scheme = await chrome.runtime.sendMessage({ type: "tabnote:getColorScheme" });
+    await setToolbarIcon(Boolean(scheme?.dark));
+  })().finally(() => { iconThemeSetup = undefined; });
+  return iconThemeSetup;
+}
+
 const LEGACY_SITE_PREFIX = "🌐 ";
 const SITE_PREFIX = "\u2063";
 const TASK_PREFIX = "📌 ";
@@ -973,7 +1004,11 @@ chrome.runtime.onStartup.addListener(() => {
     .then(() => reconcileTaskPlaceholders()).then(() => organizeAllWindows())
     .catch((error) => console.warn("Startup setup failed:", error));
 });
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message?.type === "tabnote:colorSchemeChanged" && sender.url === chrome.runtime.getURL("theme.html")) {
+    setToolbarIcon(Boolean(message.dark)).catch((error) => console.warn("Tabnote icon update failed:", error));
+    return;
+  }
   let action;
   if (message?.type === "organizeSite") {
     action = organizeAllWindows({ force: true, mode: "site" });
@@ -1015,3 +1050,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   action.then((summary) => sendResponse({ ok: true, summary })).catch((error) => sendResponse({ ok: false, error: String(error) }));
   return true;
 });
+
+if (chrome.offscreen?.createDocument) {
+  ensureIconTheme().catch((error) => console.warn("Tabnote icon theme setup failed:", error));
+}

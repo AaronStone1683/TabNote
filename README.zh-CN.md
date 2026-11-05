@@ -3,8 +3,8 @@
 <p align="center"><strong>让每个标签页都有归属。</strong><br>按网站或任务整理 Chrome 标签页，保留你的手动调整，并将任务相关网页分享为标签页集合。</p>
 
 <p align="center">
-  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.4-059669?style=flat-square" alt="版本 0.19.4"></a>
-  <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome%20102%2B-2563EB?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Chrome 102 或更新版本"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.5-059669?style=flat-square" alt="版本 0.19.5"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome%20109%2B-2563EB?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Chrome 109 或更新版本"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Manifest%20V3-7C3AED?style=flat-square" alt="Manifest V3"></a>
 </p>
 
@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.4/tabnote-v0.19.4.zip"><strong>⬇ 下载 Tabnote v0.19.4（.zip）</strong></a>
+  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.5/tabnote-v0.19.5.zip"><strong>⬇ 下载 Tabnote v0.19.5（.zip）</strong></a>
 </p>
 
 <p align="center">
@@ -25,6 +25,7 @@
 </p>
 
 弹窗将 **Sites（网站）** 和自动分组开关放在 **Tasks（任务）** 上方。每个网站组和任务组都可单独整理、导出、重命名或移除。
+工具栏图标保持透明背景，并根据系统的明暗偏好在白色和深色书签之间切换。
 
 ## 一个简单的流程
 
@@ -36,8 +37,8 @@ Tabnote 使用 Chrome 原生标签组。它会记住手动移动和已有的任�
 
 Tabnote 目前是一款本地安装的 Chrome 扩展，无需账号，也无需构建。
 
-1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.4/tabnote-v0.19.4.zip) 并解压，或克隆本仓库。
-2. 在 Chrome 102 或更新版本中打开 `chrome://extensions`，开启**开发者模式**。
+1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.5/tabnote-v0.19.5.zip) 并解压，或克隆本仓库。
+2. 在 Chrome 109 或更新版本中打开 `chrome://extensions`，开启**开发者模式**。
 3. 点击**加载已解压的扩展程序**，选择包含 `manifest.json` 的解压后文件夹。
 4. 将 Tabnote 固定到工具栏，并打开弹窗。
 5. 打开 Sites 旁的 **Auto group**，立即按网站整理当前标签页，并自动整理后续新标签。新建任务时会立即产生一个 Chrome 标签组；你可以手动移入网页，或设置 TypeSafe API Key 后点击该任务的整理图标。
