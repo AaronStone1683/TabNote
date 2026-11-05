@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 128 128" role="img" aria-labelledby="title">
   <title id="title">Tabnote bookmark logo</title>
-  <style>@media (prefers-color-scheme: light) { path { fill: #20242a; } }</style>
+  <style>@media (prefers-color-scheme: light) { path { fill: #484c52; } }</style>
   <path fill="#fff" fill-rule="evenodd" d="M12 116V26A14 14 0 0 1 26 12h76a14 14 0 0 1 14 14v90L64 84Zm16-88v62l36-22 36 22V28Z"/>
 </svg>
