@@ -3,7 +3,7 @@
 <p align="center"><strong>让每个标签页都有归属。</strong><br>按网站或任务整理 Chrome 标签页，保留你的手动调整，并将任务相关网页分享为标签页集合。</p>
 
 <p align="center">
-  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.2-059669?style=flat-square" alt="版本 0.19.2"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.3-059669?style=flat-square" alt="版本 0.19.3"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome%20102%2B-2563EB?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Chrome 102 或更新版本"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Manifest%20V3-7C3AED?style=flat-square" alt="Manifest V3"></a>
 </p>
@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.2/tabnote-v0.19.2.zip"><strong>⬇ 下载 Tabnote v0.19.2（.zip）</strong></a>
+  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.3/tabnote-v0.19.3.zip"><strong>⬇ 下载 Tabnote v0.19.3（.zip）</strong></a>
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@ Tabnote 使用 Chrome 原生标签组。它会记住手动移动和已有的任�
 
 Tabnote 目前是一款本地安装的 Chrome 扩展，无需账号，也无需构建。
 
-1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.2/tabnote-v0.19.2.zip) 并解压，或克隆本仓库。
+1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.3/tabnote-v0.19.3.zip) 并解压，或克隆本仓库。
 2. 在 Chrome 102 或更新版本中打开 `chrome://extensions`，开启**开发者模式**。
 3. 点击**加载已解压的扩展程序**，选择包含 `manifest.json` 的解压后文件夹。
 4. 将 Tabnote 固定到工具栏，并打开弹窗。
