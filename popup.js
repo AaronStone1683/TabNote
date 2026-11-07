@@ -167,13 +167,15 @@ function renderTasks() {
     sort.title = `Classify ungrouped tabs for ${task.name}`;
     sort.addEventListener("click", async () => {
       sort.disabled = true;
-      setStatus(`Matching ungrouped tabs to ${task.name}…`);
       try {
+        const { typesafeApiKey } = await chrome.storage.session.get("typesafeApiKey");
+        const localMode = !typesafeApiKey;
+        setStatus(localMode ? `Matching ${task.name} locally…` : `Matching ungrouped tabs to ${task.name}…`);
         const result = await chrome.runtime.sendMessage({ type: "organizeOneTask", taskId: task.id });
         if (!result?.ok) throw new Error(result?.error || "Unknown error");
         const { checked = 0, matched = 0 } = result.summary || {};
         setStatus(checked
-          ? `${matched} of ${checked} ungrouped tabs matched ${task.name}.`
+          ? `${matched}/${checked} tabs matched ${task.name}${localMode ? " locally" : ""}.`
           : `No ungrouped tabs to check for ${task.name}.`);
       } catch (error) {
         if (/API key/i.test(error.message)) showKeyForm(true);

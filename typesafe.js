@@ -5,6 +5,41 @@ globalThis.TabnoteTypeSafe = (() => {
   const MIN_PROBABILITY = 0.50;
   const MIN_MARGIN = 0.05;
   const pending = new Map();
+  const GENERIC_TASK_TERMS = new Set([
+    "api", "docs", "documentation", "project", "task", "research", "review", "read",
+    "write", "writing", "submission", "submit", "paper", "work", "学习", "研究", "调研", "投稿", "文档"
+  ]);
+
+  function terms(value) {
+    return String(value || "").toLocaleLowerCase().match(/[a-z0-9]+|[\p{Script=Han}]+/giu) || [];
+  }
+
+  function taskTerms(name) {
+    const eligible = terms(name).filter((term) => /\p{Script=Han}/u.test(term) ? term.length >= 2 : term.length >= 3);
+    const specific = eligible.filter((term) => !GENERIC_TASK_TERMS.has(term));
+    return specific.length ? specific : eligible;
+  }
+
+  function ruleScore(title, url, taskName) {
+    const keywords = taskTerms(taskName);
+    if (!keywords.length) return 0;
+    let host = "";
+    try { host = new URL(url).hostname.toLocaleLowerCase(); } catch { /* A title can still match. */ }
+    const labels = host.split(".");
+    const hostTerms = (labels.length > 1 ? labels.slice(0, -1) : labels)
+      .flatMap((label) => terms(label)).filter((term) => !/^www\d*$/.test(term));
+    const joined = keywords.join("");
+    if ((keywords.length === 1 && hostTerms.includes(joined)) ||
+        (keywords.length > 1 && (hostTerms.includes(joined) || keywords.every((term) => hostTerms.includes(term))))) {
+      return 1;
+    }
+    const normalizedTitle = String(title || "").toLocaleLowerCase();
+    const titleTerms = terms(normalizedTitle);
+    const contains = (term) => /\p{Script=Han}/u.test(term)
+      ? normalizedTitle.includes(term) : titleTerms.includes(term);
+    if (keywords.every(contains) || (keywords.length > 1 && titleTerms.includes(joined))) return 0.8;
+    return 0;
+  }
 
   function buildPayload(title, tasks) {
     const questions = {};
@@ -51,9 +86,10 @@ globalThis.TabnoteTypeSafe = (() => {
     }
   }
 
-  async function classify(title, tasks, apiKey) {
-    if (!title?.trim() || !tasks.length) return null;
-    const key = JSON.stringify([MODEL, PROMPT_VERSION, title, tasks.map((task) => [task.id, task.name])]);
+  async function classify(title, tasks, apiKey, url = "") {
+    if (!tasks.length || (!title?.trim() && (apiKey || !url))) return null;
+    const key = JSON.stringify([MODEL, PROMPT_VERSION, title, apiKey ? "" : url,
+      tasks.map((task) => [task.id, task.name])]);
     if (pending.has(key)) {
       console.info("[Tabnote] TypeSafe request already pending", { title });
       return pending.get(key);
@@ -62,10 +98,13 @@ globalThis.TabnoteTypeSafe = (() => {
       const known = await TabnoteDecisionStore.getMany(title, tasks, MODEL, PROMPT_VERSION);
       const missing = tasks.filter((task) => !known.has(task.id));
       if (missing.length) {
-        if (!apiKey) throw new Error("Set a TypeSafe API key to classify uncached tabs.");
-        const scores = await requestClassification(title, missing, apiKey);
-        await TabnoteDecisionStore.putMany(title, scores, MODEL, PROMPT_VERSION);
-        for (const { task, score } of scores) known.set(task.id, score);
+        if (apiKey) {
+          const scores = await requestClassification(title, missing, apiKey);
+          await TabnoteDecisionStore.putMany(title, scores, MODEL, PROMPT_VERSION);
+          for (const { task, score } of scores) known.set(task.id, score);
+        } else {
+          for (const task of missing) known.set(task.id, ruleScore(title, url, task.name));
+        }
       } else {
         console.info("[Tabnote] TypeSafe cache hit", { title, tasks: tasks.map((task) => task.name) });
       }
@@ -74,7 +113,8 @@ globalThis.TabnoteTypeSafe = (() => {
       const taskId = winner.score >= MIN_PROBABILITY &&
         (!ranked[1] || winner.score - ranked[1].score >= MIN_MARGIN) ? winner.task.id : null;
       console.info("[Tabnote] Task decision", {
-        title, reused: tasks.length - missing.length, evaluated: missing.length,
+        title, reused: tasks.length - missing.length,
+        apiEvaluated: apiKey ? missing.length : 0, ruleEvaluated: apiKey ? 0 : missing.length,
         selectedTask: tasks.find((task) => task.id === taskId)?.name || null
       });
       return taskId;

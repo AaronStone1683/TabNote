@@ -619,8 +619,8 @@ async function recordManualPlacement(tab, groupId) {
 async function targetTitle(tab, mode, tasks, apiKey) {
   if (mode === "task") {
     if (!siteOf(tab)) return null;
-    if (tab.status !== "complete" || !tab.title) return undefined;
-    const taskId = await TabnoteTypeSafe.classify(tab.title, tasks, apiKey);
+    if (tab.status !== "complete" || (apiKey && !tab.title)) return undefined;
+    const taskId = await TabnoteTypeSafe.classify(tab.title || "", tasks, apiKey, tab.url);
     const task = tasks.find((item) => item.id === taskId);
     return task ? TASK_PREFIX + task.name : null;
   }
@@ -643,7 +643,6 @@ async function organizeWindow(windowId, options = {}) {
   const tasks = options.taskId ? allTasks.filter((task) => task.id === options.taskId) : allTasks;
   if (options.taskId && !tasks.length) throw new Error("Task no longer exists.");
   const apiKey = mode === "task" ? (await chrome.storage.session.get("typesafeApiKey")).typesafeApiKey : null;
-  if (mode === "task" && !apiKey && !options.force) return summary;
   const tabs = await chrome.tabs.query({ windowId });
   await Promise.all(tabs.map((tab) => manualWrites.get(tab.id)).filter(Boolean));
   const [manual, assignments] = await Promise.all([
@@ -668,7 +667,7 @@ async function organizeWindow(windowId, options = {}) {
           continue;
         }
       }
-      if (mode === "task" && siteOf(tab) && tab.status === "complete" && tab.title) summary.checked++;
+      if (mode === "task" && siteOf(tab) && tab.status === "complete" && (tab.title || !apiKey)) summary.checked++;
       const title = await targetTitle(tab, mode, tasks, apiKey);
       targets.set(tab.id, title);
       if (mode === "task" && title?.startsWith(TASK_PREFIX)) summary.matched++;

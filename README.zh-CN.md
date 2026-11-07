@@ -3,7 +3,7 @@
 <p align="center"><strong>让每个标签页都有归属。</strong><br>按网站或任务整理 Chrome 标签页，保留你的手动调整，并将任务相关网页分享为标签页集合。</p>
 
 <p align="center">
-  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.7-059669?style=flat-square" alt="版本 0.19.7"></a>
+  <a href="manifest.json"><img src="https://img.shields.io/badge/v0.19.8-059669?style=flat-square" alt="版本 0.19.8"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Chrome%20109%2B-2563EB?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Chrome 109 或更新版本"></a>
   <a href="manifest.json"><img src="https://img.shields.io/badge/Manifest%20V3-7C3AED?style=flat-square" alt="Manifest V3"></a>
 </p>
@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.7/tabnote-v0.19.7.zip"><strong>⬇ 下载 Tabnote v0.19.7（.zip）</strong></a>
+  <a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.8/tabnote-v0.19.8.zip"><strong>⬇ 下载 Tabnote v0.19.8（.zip）</strong></a>
 </p>
 
 <p align="center">
@@ -37,14 +37,14 @@ Tabnote 使用 Chrome 原生标签组。它会记住手动移动和已有的任�
 
 Tabnote 目前是一款本地安装的 Chrome 扩展，无需账号，也无需构建。
 
-1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.7/tabnote-v0.19.7.zip) 并解压，或克隆本仓库。
+1. [下载扩展 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.8/tabnote-v0.19.8.zip) 并解压，或克隆本仓库。
 2. 在 Chrome 109 或更新版本中打开 `chrome://extensions`，开启**开发者模式**。
 3. 点击**加载已解压的扩展程序**，选择包含 `manifest.json` 的解压后文件夹。
 4. 将 Tabnote 固定到工具栏，并打开弹窗。
-5. 打开 Sites 旁的 **Auto group**，立即按网站整理当前标签页，并自动整理后续新标签。新建任务时会立即产生一个 Chrome 标签组；你可以手动移入网页，或设置 TypeSafe API Key 后点击该任务的整理图标。
+5. 打开 Sites 旁的 **Auto group**，立即按网站整理当前标签页，并自动整理后续新标签。新建任务时会立即产生一个 Chrome 标签组；你可以手动移入网页，也可以点击该任务的整理图标。API Key 是可选的。
 
 > [!IMPORTANT]
-> 只有对尚未保存结果的标签页进行自动任务分类时，才需要 TypeSafe API Key。按网站分组、活动历史以及标签页集合的导入导出均无需 API Key。
+> 没有 TypeSafe API Key 时，任务分类使用历史判断和本地字符串规则；有 Key 时，尚未保存的判断使用 TypeSafe System One。按网站分组、活动历史以及标签页集合的导入导出均无需 API Key。
 
 ## 功能一览
 
@@ -54,14 +54,14 @@ Tabnote 目前是一款本地安装的 Chrome 扩展，无需账号，也无需�
 | **Tab Set** | 上传别人分享的任务或网站 TXT 文件，并在分组中打开其中的网页。上传入口位于任务输入框旁。 |
 | **Sites · Auto group** | 默认关闭。打开后会先整理已打开窗口中符合条件的标签页，再自动按网站整理新标签。新建网站组至少需要两个同站标签页；分组颜色会变化。 |
 | **网站行操作** | 整理该网站剩余的标签页、将已打开网页导出为 TXT、重命名网站组，或移除插件自动放入该组的标签页。 |
-| **任务行整理图标** | 使用 TypeSafe System One 比较组外标签页的标题和该任务，并将符合条件的网页放入任务组。 |
+| **任务行整理图标** | 无 API Key 时使用历史判断和本地规则，有 Key 时使用 TypeSafe System One，对组外标签页进行任务分类。 |
 | **任务行删除图标** | 删除任务并取消该任务组内所有标签页的分组。网页仍保持打开；未使用的临时空白页会关闭。 |
 | **Reset** | 取消所有 Chrome 标签组，包括安装 Tabnote 前创建的分组，并暂停自动按网站整理。真实网页保持打开，任务临时页会关闭。 |
 | **History** | 下载记录标签页新增和关闭操作的 TXT 文件，包含时间戳与标签页信息。 |
 
 开启网站自动分组后，Tabnote 也会整理符合条件的新标签或已更新的标签。若自动分组的网页跳转到其他网站，它会离开旧的网站组，并可能加入新网站的分组。你手动放进分组的标签页会留在原处。任务分类只在点击对应任务的整理图标时执行，手动给任务分组无需 API Key；已在其他组的标签页不会被重新分类。
 
-任务判断按网页标题和任务保存；再次遇到相同判断时会使用历史结果，而不重复调用 API。匹配阈值为 **0.50**，不确定的网页留在组外。手动将网页移入任务组也会记录你的选择，供之后整理时使用。
+没有 Key 时，本地规则用任务中的关键字匹配域名标签或标题中的完整词：`JEV` 可以匹配 `docs.jev.ai` 或包含 `JEV` 的标题，但不会把 `notjev.ai` 误认为命中。多个任务同时命中时，标签页留在组外。规则结果每次重新计算，不会覆盖已保存的 API 判断。有 Key 时，任务判断按网页标题和任务保存；再次遇到相同判断时会使用历史结果，而不重复调用 API。API 匹配阈值为 **0.50**。手动将网页移入任务组也会记录你的选择，供之后整理时使用。
 
 弹窗的 **Sites** 列表展示网站图标，并用域名首段作为短名称：`docs.example.com` 显示为 `docs`，`www.example.com` 则跳过 `www`、显示为 `example`。Chrome 中新建的网站组也使用这个名称；已有组的旧自动名称会更新，自定义名称保持不变。任务行会优先使用组内第一个网页的网站图标。你在 Chrome 中手动修改分组名称或颜色后，Tabnote 仍可识别该组。Chrome 原生标签组的标题不支持图片图标。
 
