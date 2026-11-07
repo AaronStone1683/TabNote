@@ -18,11 +18,20 @@
 </p>
 
 <p align="center">
+  <a href="#视频演示">视频演示</a> ·
   <a href="#快速开始">快速开始</a> ·
   <a href="#功能一览">功能一览</a> ·
   <a href="#分享标签页集合">分享标签页集合</a> ·
   <a href="#隐私">隐私</a>
 </p>
+
+## 视频演示
+
+**按网站分组。** 打开 **Auto group** 后，Tabnote 会整理已打开的标签页，并在浏览过程中继续自动整理新标签页。点击下方预览图观看 14 秒演示。
+
+[![视频预览：Tabnote 按网站整理 Chrome 标签页](assets/demos/group-by-site.jpg)](assets/demos/group-by-site.mp4)
+
+▶ [观看按网站分组视频](assets/demos/group-by-site.mp4)
 
 弹窗将 **Sites（网站）** 和自动分组开关放在 **Tasks（任务）** 上方。每个网站组和任务组都可单独整理、导出、重命名或移除。
 工具栏图标保持透明背景，并根据系统的明暗偏好在白色和深色书签之间切换。
@@ -32,6 +41,10 @@
 **创建任务 → 手动将网页移入新分组，或点击整理按钮 → 导出这个任务的标签页集合。**
 
 Tabnote 使用 Chrome 原生标签组。它会记住手动移动和已有的任务判断，重新整理时只处理仍需判断的标签页。整理操作会保留现有分组；**Reset** 会取消所有分组。
+
+**按任务分组。** 创建任务后，点击任务行的整理图标，即可收集匹配的网页。[▶ 观看按任务分组视频](assets/demos/group-by-task.mp4)。
+
+[![视频预览：Tabnote 将匹配的 Chrome 标签页归入任务组](assets/demos/group-by-task.jpg)](assets/demos/group-by-task.mp4)
 
 ## 快速开始
 
@@ -78,6 +91,10 @@ Tabs:
 ```
 
 把文件发给其他 Tabnote 用户后，对方点击任务输入框旁的 **Tab Set**，即可打开这些网页并创建或复用同名任务组。文件在本地读取，导入无需 API Key；每个文件最多支持 500 个 HTTP(S) 网页。
+
+**恢复已保存的标签页集合。** 导入文件后，Tabnote 会创建分组并打开其中的网页。[▶ 观看导入视频](assets/demos/import-tab-set.mp4)。
+
+[![视频预览：Tabnote 导入标签页集合并打开其中的网页](assets/demos/import-tab-set.jpg)](assets/demos/import-tab-set.mp4)
 
 网站组也能从对应行导出。网站 TXT 包含域名、分组名称和标签页；导入时会创建或复用网站组。移除网站组时，手动放入的标签页仍留在原组中。删除任务则会取消该任务组所有标签页的分组，但保留网页。**Reset** 会取消所有 Chrome 标签组，包括安装 Tabnote 前已有的分组和包含手动移动标签页的分组。
 

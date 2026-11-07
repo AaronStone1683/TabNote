@@ -18,11 +18,20 @@
 </p>
 
 <p align="center">
+  <a href="#see-it-in-action">Watch the demos</a> ·
   <a href="#get-started">Get started</a> ·
   <a href="#what-you-can-do">What you can do</a> ·
   <a href="#share-a-tab-set">Share a tab set</a> ·
   <a href="#privacy">Privacy</a>
 </p>
+
+## See it in action
+
+**Group by website.** Turn on **Auto group** once: Tabnote organizes open tabs by site and keeps grouping new tabs as you browse. Click the preview to watch the 14-second demo.
+
+[![Video preview: Tabnote grouping Chrome tabs by website](assets/demos/group-by-site.jpg)](assets/demos/group-by-site.mp4)
+
+▶ [Watch the website grouping video](assets/demos/group-by-site.mp4)
 
 The popup puts **Sites** and its automatic grouping switch above **Tasks**. Each site and task row has buttons to sort, export, rename, and remove its group.
 The transparent toolbar icon switches between white and dark outlines with your system's light or dark appearance preference.
@@ -32,6 +41,10 @@ The transparent toolbar icon switches between white and dark outlines with your 
 **Name a task → move tabs into its new group by hand or use Sort → export the task's tab set.**
 
 Tabnote groups pages in Chrome's native tab strip. It remembers manual moves and previous task decisions, so sorting again focuses on tabs that still need a decision. Sorting leaves existing groups in place; **Reset** removes all groups.
+
+**Group by task.** Create a task, then click its sort icon to collect matching pages. [▶ Watch the task grouping video](assets/demos/group-by-task.mp4).
+
+[![Video preview: Tabnote grouping matching Chrome tabs into a task](assets/demos/group-by-task.jpg)](assets/demos/group-by-task.mp4)
 
 ## Get started
 
@@ -76,6 +89,10 @@ Tabs:
 ```
 
 Send that file to someone using Tabnote. They can click **Tab Set** beside the task input to open its pages and create or reuse the named group. The file is read locally; importing does not require an API key. Upload accepts up to 500 HTTP(S) pages.
+
+**Reopen a saved tab set.** The import creates its group and opens the saved pages in one step. [▶ Watch the tab-set import video](assets/demos/import-tab-set.mp4).
+
+[![Video preview: Tabnote importing a saved tab set and opening its pages](assets/demos/import-tab-set.jpg)](assets/demos/import-tab-set.mp4)
 
 Website groups can also be exported from their row. A website TXT stores the hostname, group label, and tabs; importing it creates or reuses a website group. Removing a site group keeps manually placed tabs in their group. Deleting a task ungroups all of its tabs while leaving the web pages open. **Reset** removes every Chrome tab group, including groups that existed before Tabnote and those containing manually placed tabs.
 
