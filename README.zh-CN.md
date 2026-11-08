@@ -21,6 +21,8 @@ https://github.com/user-attachments/assets/1e0fde4d-4111-41aa-a966-eccc68d3d9f2
 
 创建任务，点击整理按钮，相关网页就会归到一起。你也可以随时手动移动标签页，以自己的判断为准。
 
+**可选的 TypeSafe API：** 点击弹窗中的钥匙图标填写 Key。点击任务整理按钮时，TypeSafe System One 会判断尚未分类的组外网页标题是否属于该任务，并保存结果供下次复用。没有 Key 时，Tabnote 会使用历史判断和本地关键词匹配。
+
 https://github.com/user-attachments/assets/c861dc11-de02-4900-985a-b81a5c2fd67f
 
 ### 一键找回整组网页
@@ -34,7 +36,6 @@ https://github.com/user-attachments/assets/2e313bda-b7a9-4473-ba92-71368c3aa4fd
 - **手动调整优先。** 你亲手放进分组的标签页，不会被自动整理挪走。
 - **记住已有判断。** 任务分类会复用历史结果；Tab Set 则能让别人打开同一组网页。
 - **使用 Chrome 原生分组。** 修改分组名称或颜色后，Tabnote 仍能识别它。
-- **无需先配置 API。** 网站分组和本地任务匹配开箱可用；TypeSafe System One 只是可选的任务分类方式。
 
 ## 立即试用
 
@@ -51,7 +52,7 @@ https://github.com/user-attachments/assets/2e313bda-b7a9-4473-ba92-71368c3aa4fd
 | **History** | 导出标签页新增和关闭记录。 |
 | **Reset** | 取消所有 Chrome 标签组，保留网页。 |
 
-网站和任务行也可单独整理、导出、重命名或移除。整理只处理组外标签页，已有分组不受影响。任务分类先复用历史判断；没有 API Key 时，还会用任务关键词匹配网站名称和网页标题；有 Key 时，可将尚未判断的标题交给 TypeSafe System One。
+网站和任务行也可单独整理、导出、重命名或移除。整理只处理组外标签页，已有分组不受影响。
 
 ## 隐私与开发
 

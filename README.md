@@ -21,6 +21,8 @@ https://github.com/user-attachments/assets/1e0fde4d-4111-41aa-a966-eccc68d3d9f2
 
 Create a task, then use its sort button to collect related pages. Move any tab by hand whenever you know better.
 
+**Optional TypeSafe API:** Add your key with the popup's key icon. When you click Sort, TypeSafe System One checks undecided, ungrouped page titles against the task and saves the results for next time. Without a key, Tabnote uses saved decisions and local keyword matching.
+
 https://github.com/user-attachments/assets/c861dc11-de02-4900-985a-b81a5c2fd67f
 
 ### Bring the whole set back
@@ -34,7 +36,6 @@ https://github.com/user-attachments/assets/2e313bda-b7a9-4473-ba92-71368c3aa4fd
 - **Your moves come first.** Tabs you put into a group by hand stay there during automatic sorting.
 - **Pick up where you left off.** Saved task decisions avoid repeat classification; a Tab Set lets someone else reopen the same pages.
 - **Stay in Chrome.** Groups are native Chrome tab groups. Rename or recolor them without losing Tabnote's connection.
-- **Start without an API key.** Website grouping and local task matching work right away. TypeSafe System One is optional for task classification.
 
 ## Try it
 
@@ -51,7 +52,7 @@ https://github.com/user-attachments/assets/2e313bda-b7a9-4473-ba92-71368c3aa4fd
 | **History** | Exports a TXT log of added and closed tabs. |
 | **Reset** | Removes all Chrome tab groups while keeping your web pages open. |
 
-Each site and task row also has controls to sort, export, rename, or remove its group. Sorting works on ungrouped tabs and leaves existing groups alone. Task sorting first uses saved decisions; without an API key, it also matches distinctive task terms against website names and page titles. With a key, undecided titles can be classified through TypeSafe System One.
+Each site and task row also has controls to sort, export, rename, or remove its group. Sorting works on ungrouped tabs and leaves existing groups alone.
 
 ## Privacy & development
 
