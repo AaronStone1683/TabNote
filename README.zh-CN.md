@@ -11,51 +11,56 @@
 <p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md"><strong>简体中文</strong></a></p>
 <p align="center"><a href="https://github.com/AaronStone1683/TabNote/releases/download/v0.19.8/tabnote-v0.19.8.zip"><strong>⬇ 下载 Tabnote Chrome 插件</strong></a></p>
 
-## 看标签页自己归位
+## 功能
+
+### 按网站分组
 
 打开 **Auto group**，同一网站的标签页就会进入 Chrome 原生分组；之后打开的新标签页也会继续整理。
 
 https://github.com/user-attachments/assets/1e0fde4d-4111-41aa-a966-eccc68d3d9f2
 
-### 给任务留一个空间
+### 按任务分组
 
-创建任务，点击整理按钮，相关网页就会归到一起。你也可以随时手动移动标签页，以自己的判断为准。
+创建任务，点击整理按钮，相关网页就会归到一起。没有 API Key 时，Tabnote 使用历史判断和本地关键词匹配；在钥匙按钮中填写 **TypeSafe API Key** 后，System One 的 Jev 模型会判断尚未分类的网页标题，并保存结果供下次复用。
 
-**可选的 TypeSafe API：** 点击弹窗中的钥匙图标填写 Key。点击任务整理按钮时，TypeSafe System One 会判断尚未分类的组外网页标题是否属于该任务，并保存结果供下次复用。没有 Key 时，Tabnote 会使用历史判断和本地关键词匹配。
+> [!TIP]
+> 知道某个标签页属于哪个任务时，可以直接手动移入分组。Tabnote 会记住你的选择，之后整理也不会把它挪走。
 
 https://github.com/user-attachments/assets/c861dc11-de02-4900-985a-b81a5c2fd67f
 
-### 一键找回整组网页
+### 保存并恢复标签页集合
 
 将任务中的网页导出为 **Tab Set**。分享这个 TXT 文件，或以后重新导入，就能打开网页并恢复分组。
 
 https://github.com/user-attachments/assets/2e313bda-b7a9-4473-ba92-71368c3aa4fd
 
-## 顺着你的浏览习惯来
+### 弹窗功能一览
 
-- **手动调整优先。** 你亲手放进分组的标签页，不会被自动整理挪走。
-- **记住已有判断。** 任务分类会复用历史结果；Tab Set 则能让别人打开同一组网页。
-- **使用 Chrome 原生分组。** 修改分组名称或颜色后，Tabnote 仍能识别它。
-
-## 立即试用
-
-1. [下载 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.8/tabnote-v0.19.8.zip) 并解压。
-2. 在 Chrome 109+ 打开 `chrome://extensions`，开启**开发者模式**，点击**加载已解压的扩展程序**。
-3. 选择包含 `manifest.json` 的文件夹，将 Tabnote 固定到工具栏并打开。
-4. 在 **Sites** 打开 **Auto group**，或新建 **Task** 后点击整理按钮。
-
-| 弹窗入口 | 功能 |
+| 入口 | 功能 |
 | --- | --- |
 | **Sites · Auto group** | 按网站整理已有和新打开的网页；默认关闭。 |
 | **Tasks · Add a task** | 立即创建任务组；可手动移动标签页，也可使用整理按钮。 |
+| **钥匙按钮** | 填写 TypeSafe API Key，通过 System One 调用 Jev 模型进行任务分类。 |
 | **Tab Set** | 导入别人分享的 TXT，在分组中打开保存的网页。 |
 | **History** | 导出标签页新增和关闭记录。 |
 | **Reset** | 取消所有 Chrome 标签组，保留网页。 |
 
-网站和任务行也可单独整理、导出、重命名或移除。整理只处理组外标签页，已有分组不受影响。
+网站和任务行也可单独整理、导出、重命名或移除。整理会保留已有分组；在 Chrome 中修改分组名称或颜色后，Tabnote 仍能识别它。
 
-## 隐私与开发
+## 安装
 
-任务、分组选择和历史记录保存在本机 Chrome 的本地存储与 IndexedDB。可选的 TypeSafe 请求只发送**网页标题和任务名称**，不发送 URL 或网页内容。API Key 存于 Chrome 会话存储，浏览器会话结束后清除。分享导出的 TXT 前请检查：其中包含完整 URL 和网页标题。
+1. [下载 ZIP](https://github.com/AaronStone1683/TabNote/releases/download/v0.19.8/tabnote-v0.19.8.zip) 并解压。
+2. 在 Chrome 109+ 打开 `chrome://extensions`，开启**开发者模式**，点击**加载已解压的扩展程序**。
+3. 选择包含 `manifest.json` 的文件夹，将 Tabnote 固定到工具栏并打开。
 
-Tabnote 目前是本地原型。需要查看分类日志时，在 `chrome://extensions` 中打开 Tabnote 的 **Service worker**，搜索 `[Tabnote]`。本地行为检查可运行 `node tests/grouping.cjs` 和 `node tests/tab-transfer.cjs`。项目尚未添加公开许可证。
+> [!TIP]
+> 网站自动分组默认关闭。在 **Sites** 打开 **Auto group** 后，当前和新打开的标签页都会按网站整理。创建任务和手动移入网页无需 API Key。
+
+## 隐私
+
+任务、分组选择和历史记录保存在本机 Chrome 的本地存储与 IndexedDB。可选的 TypeSafe 请求只发送**网页标题和任务名称**，不发送 URL 或网页内容。API Key 存于 Chrome 会话存储，浏览器会话结束后清除。
+
+> [!IMPORTANT]
+> 分享 Tab Set 前请检查内容：导出的 TXT 包含完整 URL 和网页标题。
+
+Tabnote 目前是本地原型，尚未添加公开许可证。需要查看任务分类日志时，可在 `chrome://extensions` 中打开扩展的 **Service worker**；本地检查位于 `tests/`。
